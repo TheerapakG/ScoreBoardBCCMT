@@ -80,6 +80,12 @@
                 </Style>
             </Button.Style>
         </Button>
+
+        <TextBlock Text="Enter team name or team number:" FontSize="25px" Margin="50,110,1465,933"></TextBlock>
+
+        <TextBox FontSize="25px" Margin="460,110,960,933"></TextBox>
+
+        <ListBox Margin="50,170,1465,10"></ListBox>
         
     </Grid>
 </Window>
