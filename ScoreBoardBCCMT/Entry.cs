@@ -8,5 +8,7 @@ namespace ScoreBoardBCCMT
 {
     class Entry
     {
+        string groupname;
+        List<string> participant;
     }
 }

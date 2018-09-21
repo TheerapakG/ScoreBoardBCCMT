@@ -10,12 +10,14 @@ namespace ScoreBoardBCCMT
 {
     class EntriesLoader
     {
-        /* Load entries information from list and push it into our list and listbox
-         * 
-        */
-        static void AppendEntries(ref ListBox listBox, List list)
+        /// <summary>
+        /// Load entries from file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        static public List<Entry> GetEntries(string path)
         {
-
+            return null;
         }
     }
 }

@@ -21,24 +21,30 @@ namespace ScoreBoardBCCMT
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Entry> list = new List<Entry>();
+        List<Entry> list = null;
+        ListBox entrylistBox = null;
 
         public MainWindow()
         {
-            Trace.WriteLine("new MainWindow");
             this.AddDynamicElements();
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Add Elements that need to be update in the code
+        /// </summary>
         private void AddDynamicElements()
         {
-            ListBox listBox = new ListBox();
-            Thickness listBoxthickness = new Thickness();
-            listBoxthickness.Left = 50;
-            listBoxthickness.Top = 170;
-            listBoxthickness.Right = 1465;
-            listBoxthickness.Bottom = 10;
-            listBox.Margin = listBoxthickness;
+            string path = PromptDialog.Prompt("Entries File", "Prompt", inputType: PromptDialog.InputType.Text);
+            list = EntriesLoader.GetEntries(path);
+            this.entrylistBox = new ListBox();
+            Thickness listBoxthickness_1 = new Thickness
+            {
+                Left = 50,
+                Top = 170,
+                Right = 1465,
+                Bottom = 10
+            };
+            this.entrylistBox.Margin = listBoxthickness_1;
         }
 
         private void Button_PreviewMouseLeftButtonUp_Exit(object sender, MouseButtonEventArgs e)
@@ -49,6 +55,11 @@ namespace ScoreBoardBCCMT
         private void Button_PreviewMouseLeftButtonUp_Minimize(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 }
