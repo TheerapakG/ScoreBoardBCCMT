@@ -8,7 +8,13 @@ namespace ScoreBoardBCCMT
 {
     class Entry
     {
-        string groupname;
-        List<string> participant;
+        public string Groupname { get; set; }
+        public List<string> Participant { get; set; }
+
+        public Entry(string groupname, List<string> participant)
+        {
+            Groupname = groupname;
+            Participant = participant;
+        }
     }
 }

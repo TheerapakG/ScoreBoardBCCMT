@@ -17,7 +17,8 @@ namespace ScoreBoardBCCMT
         /// <returns></returns>
         static public List<Entry> GetEntries(string path)
         {
-            return null;
+            List<Entry> entries = new List<Entry>();
+            return entries;
         }
     }
 }

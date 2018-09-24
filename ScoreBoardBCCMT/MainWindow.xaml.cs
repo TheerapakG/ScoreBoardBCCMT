@@ -26,8 +26,8 @@ namespace ScoreBoardBCCMT
 
         public MainWindow()
         {
-            this.AddDynamicElements();
             InitializeComponent();
+            this.AddDynamicElements();
         }
         /// <summary>
         /// Add Elements that need to be update in the code
@@ -45,6 +45,18 @@ namespace ScoreBoardBCCMT
                 Bottom = 10
             };
             this.entrylistBox.Margin = listBoxthickness_1;
+            Grid grid = (Grid)this.Content;
+            grid.Children.Add(this.entrylistBox);
+            foreach (Entry entry in list)
+            {
+                //Show it
+                ListBoxItem item = new ListBoxItem
+                {
+                    Content = entry.Groupname,
+                    FontSize = 25
+                };
+                this.entrylistBox.Items.Add(item);
+            }
         }
 
         private void Button_PreviewMouseLeftButtonUp_Exit(object sender, MouseButtonEventArgs e)
@@ -57,9 +69,23 @@ namespace ScoreBoardBCCMT
             this.WindowState = WindowState.Minimized;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged_Search(object sender, TextChangedEventArgs e)
         {
-            
+            this.entrylistBox.Items.Clear();
+            TextBox textBox = (TextBox)sender;
+            foreach (Entry entry in list)
+            {
+                if(entry.Groupname.Contains(textBox.Text))
+                {
+                    //Show it
+                    ListBoxItem item = new ListBoxItem
+                    {
+                        Content = entry.Groupname,
+                        FontSize = 25
+                    };
+                    this.entrylistBox.Items.Add(item);
+                }
+            }
         }
     }
 }
