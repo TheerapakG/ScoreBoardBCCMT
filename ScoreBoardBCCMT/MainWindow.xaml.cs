@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace ScoreBoardBCCMT
 {
@@ -22,7 +23,9 @@ namespace ScoreBoardBCCMT
     public partial class MainWindow : Window
     {
         List<Entry> list = null;
-        ListBox entrylistBox = null;
+        ObservableCollection<string> searched = new ObservableCollection<string>();
+        Entry select = null;
+        Dictionary<string, Entry> nameEntry = null;
 
         public MainWindow()
         {
@@ -35,28 +38,21 @@ namespace ScoreBoardBCCMT
         private void AddDynamicElements()
         {
             string path = PromptDialog.Prompt("Entries File", "Prompt", inputType: PromptDialog.InputType.Text);
-            list = EntriesLoader.GetEntries(path);
-            this.entrylistBox = new ListBox();
-            Thickness listBoxthickness_1 = new Thickness
+            this.list = EntriesLoader.GetEntries(path);
+            if(this.list.Count() == 0)
             {
-                Left = 50,
-                Top = 170,
-                Right = 1465,
-                Bottom = 10
-            };
-            this.entrylistBox.Margin = listBoxthickness_1;
-            Grid grid = (Grid)this.Content;
-            grid.Children.Add(this.entrylistBox);
+                throw new Exception("entries list count equal zero");
+            }
+            this.nameEntry = new Dictionary<string, Entry>();
+            this.entrylistBox.ItemsSource = searched;
             foreach (Entry entry in list)
             {
+                this.nameEntry.Add(entry.Groupname, entry);
                 //Show it
-                ListBoxItem item = new ListBoxItem
-                {
-                    Content = entry.Groupname,
-                    FontSize = 25
-                };
-                this.entrylistBox.Items.Add(item);
+                this.searched.Add(entry.Groupname);
             }
+            this.select = list[0];
+            this.SelectionNameView.Text = list[0].Groupname;
         }
 
         private void Button_PreviewMouseLeftButtonUp_Exit(object sender, MouseButtonEventArgs e)
@@ -71,20 +67,26 @@ namespace ScoreBoardBCCMT
 
         private void TextBox_TextChanged_Search(object sender, TextChangedEventArgs e)
         {
-            this.entrylistBox.Items.Clear();
+            this.searched.Clear();
             TextBox textBox = (TextBox)sender;
             foreach (Entry entry in list)
             {
-                if(entry.Groupname.Contains(textBox.Text))
+                if(textBox.Text.Split().All(entry.Groupname.Contains))
                 {
                     //Show it
-                    ListBoxItem item = new ListBoxItem
-                    {
-                        Content = entry.Groupname,
-                        FontSize = 25
-                    };
-                    this.entrylistBox.Items.Add(item);
+                    this.searched.Add(entry.Groupname);
                 }
+            }
+            this.entrylistBox.ItemsSource = searched;
+        }
+
+        private void EntrylistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string listBoxItem = ((sender as ListBox).SelectedItem as string);
+            if(listBoxItem != null)
+            {
+                this.select = nameEntry[listBoxItem];
+                this.SelectionNameView.Text = listBoxItem;
             }
         }
     }

@@ -81,11 +81,15 @@
             </Button.Style>
         </Button>
 
-        <TextBlock Text="Enter team name or team number:" FontSize="25px" Margin="50,110,1465,933"></TextBlock>
+        <TextBlock Text="Enter team name and team number:" FontSize="25px" Margin="50,110,1465,933"></TextBlock>
 
         <TextBox FontSize="25px" Margin="460,110,960,933" TextChanged="TextBox_TextChanged_Search"></TextBox>
 
-        
-        
+        <ListBox Name="entrylistBox" Margin="50,170,1465,10" SelectionChanged="EntrylistBox_SelectionChanged" FontSize="25"></ListBox>
+
+        <TextBlock Text="Current Selection:" FontSize="40px" Margin="640,170,960,850"></TextBlock>
+
+        <TextBlock Name="SelectionNameView" FontSize="40px" Margin="965,170,10,850"></TextBlock>
+
     </Grid>
 </Window>
