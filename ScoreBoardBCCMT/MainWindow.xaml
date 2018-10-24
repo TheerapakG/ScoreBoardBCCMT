@@ -16,7 +16,7 @@
                FontSize="50"
                Height="80"
                Margin="10,10,960,990"/>
-        
+
         <Button Content="Exit"
                 FontSize="25"
                 Height="80"
@@ -48,7 +48,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        
+
         <Button Content="Minimize"
                 FontSize="25"
                 Height="80"
@@ -91,5 +91,69 @@
 
         <TextBlock Name="SelectionNameView" FontSize="40px" Margin="965,170,10,850"></TextBlock>
 
+        <TextBlock Text="Score:" FontSize="40px" Margin="640,235,960,785"/>
+
+        <TextBlock Name="SelectionScoreView" FontSize="40px" Margin="965,235,10,785"/>
+
+        <TextBlock Text="ส่งชุด:" FontSize="30px" Margin="640,300,960,735"/>
+
+        <TextBlock Text="ส่งข้อ:" FontSize="30px" Margin="640,350,960,685"/>
+
+        <TextBlock Text="ถูก/ผิด A:" FontSize="30px" Margin="640,400,960,635"/>
+
+        <TextBlock Text="ถูก/ผิด B:" FontSize="30px" Margin="640,450,960,585"/>
+
+        <TextBlock Text="Verify information:" FontSize="30px" Margin="640,500,960,535"/>
+        <TextBlock Text="ทีม:" FontSize="30px" Margin="670,550,930,485"/>
+        <TextBlock Name="SelectionNameView_Verify" FontSize="30px" Margin="900,550,400,485"></TextBlock>
+        <TextBlock Name="SelectionProbView_Verify" FontSize="30px" Margin="900,605,400,430"></TextBlock>
+        <TextBlock Name="SelectionSubProbView_Verify" FontSize="30px" Margin="900,655,400,380"></TextBlock>
+        <TextBlock Name="SelectionA_Verify" FontSize="30px" Margin="900,700,400,335"></TextBlock>
+        <TextBlock Name="SelectionB_Verify" FontSize="30px" Margin="900,750,400,285"></TextBlock>
+        <TextBlock Text="ส่งชุด:" FontSize="30px" Margin="670,600,930,435"/>
+        <TextBlock FontSize="30px" Margin="670,650,930,385" Text="ส่งข้อ:"/>
+        <TextBlock FontSize="30px" Margin="670,700,930,335" Text="ข้อ A:"/>
+        <TextBlock FontSize="30px" Margin="670,750,930,285" Text="ข้อ B:"/>
+        <TextBlock FontSize="30px" Margin="670,800,930,235" Text="จะได้คะแนน:"/>
+        <TextBlock FontSize="30px" Margin="640,850,930,185" Text="ตรวจสอบข้อมูลเรียบร้อยแล้ว:"/>
+
+        <ComboBox FontSize="30px" Margin="965,300,605,735" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+            <ComboBoxItem>2</ComboBoxItem>
+            <ComboBoxItem>3</ComboBoxItem>
+            <ComboBoxItem>4</ComboBoxItem>
+            <ComboBoxItem>5</ComboBoxItem>
+            <ComboBoxItem>6</ComboBoxItem>
+            <ComboBoxItem>7</ComboBoxItem>
+            <ComboBoxItem>8</ComboBoxItem>
+            <ComboBoxItem>9</ComboBoxItem>
+            <ComboBoxItem>10</ComboBoxItem>
+        </ComboBox>
+
+        <Viewbox Margin="965,350,875,685">
+            <RadioButton x:Name="probs_A" GroupName="probs" Content="A" PreviewMouseLeftButtonUp="RadioButton_PreviewMouseLeftButtonUp_Selected_A"/>
+        </Viewbox>
+        <Viewbox Margin="1070,350,770,685">
+            <RadioButton x:Name="probs_B" GroupName="probs" Content="B" PreviewMouseLeftButtonUp="RadioButton_PreviewMouseLeftButtonUp_Selected_B"/>
+        </Viewbox>
+        <Viewbox Margin="1175,350,595,685">
+            <RadioButton x:Name="probs_both" GroupName="probs" Content="สองข้อ" PreviewMouseLeftButtonUp="RadioButton_PreviewMouseLeftButtonUp_Selected_both" IsChecked="True"/>
+        </Viewbox>
+
+        <Viewbox Margin="965,400,855,635">
+            <RadioButton x:Name="A_correct" GroupName="A" Content="ถูก" PreviewMouseLeftButtonUp="A_PreviewMouseLeftButtonUp"/>
+        </Viewbox>
+
+        <Viewbox Margin="1070,400,750,635">
+            <RadioButton x:Name="A_wrong" GroupName="A" Content="ผิด" IsChecked="True" PreviewMouseLeftButtonUp="A_PreviewMouseLeftButtonUp"/>
+        </Viewbox>
+
+        <Viewbox Margin="965,450,855,585">
+            <RadioButton x:Name="B_correct" GroupName="B" Content="ถูก" PreviewMouseLeftButtonUp="B_PreviewMouseLeftButtonUp"/>
+        </Viewbox>
+
+        <Viewbox Margin="1070,450,750,585">
+            <RadioButton x:Name="B_wrong" GroupName="B" Content="ผิด" IsChecked="True" PreviewMouseLeftButtonUp="B_PreviewMouseLeftButtonUp"/>
+        </Viewbox>
     </Grid>
 </Window>

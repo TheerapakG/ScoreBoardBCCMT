@@ -18,6 +18,7 @@ namespace ScoreBoardBCCMT
         static public List<Entry> GetEntries(string path)
         {
             List<Entry> entries = new List<Entry>();
+            entries.Add(new Entry("dummy", null));
             return entries;
         }
     }

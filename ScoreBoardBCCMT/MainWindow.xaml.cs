@@ -26,6 +26,8 @@ namespace ScoreBoardBCCMT
         ObservableCollection<string> searched = new ObservableCollection<string>();
         Entry select = null;
         Dictionary<string, Entry> nameEntry = null;
+        string Aselect = "ผิด";
+        string Bselect = "ผิด";
 
         public MainWindow()
         {
@@ -53,6 +55,11 @@ namespace ScoreBoardBCCMT
             }
             this.select = list[0];
             this.SelectionNameView.Text = list[0].Groupname;
+            this.SelectionNameView_Verify.Text = list[0].Groupname;
+            this.SelectionProbView_Verify.Text = "1";
+            this.SelectionSubProbView_Verify.Text = "สองข้อ";
+            this.SelectionA_Verify.Text = "ผิด";
+            this.SelectionB_Verify.Text = "ผิด";
         }
 
         private void Button_PreviewMouseLeftButtonUp_Exit(object sender, MouseButtonEventArgs e)
@@ -87,7 +94,60 @@ namespace ScoreBoardBCCMT
             {
                 this.select = nameEntry[listBoxItem];
                 this.SelectionNameView.Text = listBoxItem;
+                this.SelectionNameView_Verify.Text = listBoxItem;
             }
+        }
+
+
+        private void RadioButton_PreviewMouseLeftButtonUp_Selected_A(object sender, MouseButtonEventArgs e)
+        {
+            A_correct.IsEnabled = true;
+            A_wrong.IsEnabled = true;
+            B_correct.IsEnabled = false;
+            B_wrong.IsEnabled = false;
+            SelectionSubProbView_Verify.Text = "A";
+            this.SelectionA_Verify.Text = Aselect;
+            this.SelectionB_Verify.Text = "ไม่ส่ง";
+        }
+
+        private void RadioButton_PreviewMouseLeftButtonUp_Selected_B(object sender, MouseButtonEventArgs e)
+        {
+            A_correct.IsEnabled = false;
+            A_wrong.IsEnabled = false;
+            B_correct.IsEnabled = true;
+            B_wrong.IsEnabled = true;
+            SelectionSubProbView_Verify.Text = "B";
+            this.SelectionA_Verify.Text = "ไม่ส่ง";
+            this.SelectionB_Verify.Text = Bselect;
+        }
+
+        private void RadioButton_PreviewMouseLeftButtonUp_Selected_both(object sender, MouseButtonEventArgs e)
+        {
+            A_correct.IsEnabled = true;
+            A_wrong.IsEnabled = true;
+            B_correct.IsEnabled = true;
+            B_wrong.IsEnabled = true;
+            SelectionSubProbView_Verify.Text = "สองข้อ";
+            this.SelectionA_Verify.Text = Aselect;
+            this.SelectionB_Verify.Text = Bselect;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(((sender as ComboBox).SelectedItem as ComboBoxItem).Content == null) return;
+            SelectionProbView_Verify.Text = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content.ToString();
+        }
+
+        private void A_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Aselect = (sender as RadioButton).Content.ToString();
+            if(Convert.ToBoolean(probs_A.IsChecked) || Convert.ToBoolean((probs_both.IsChecked))) this.SelectionA_Verify.Text = Aselect;
+        }
+
+        private void B_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Bselect = (sender as RadioButton).Content.ToString();
+            if (Convert.ToBoolean(probs_B.IsChecked) || Convert.ToBoolean((probs_both.IsChecked))) this.SelectionB_Verify.Text = Bselect;
         }
     }
 }
