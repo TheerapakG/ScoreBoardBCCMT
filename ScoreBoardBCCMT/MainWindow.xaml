@@ -87,13 +87,13 @@
 
         <ListBox Name="entrylistBox" Margin="50,170,1465,10" SelectionChanged="EntrylistBox_SelectionChanged" FontSize="25"></ListBox>
 
-        <TextBlock Text="Current Selection:" FontSize="40px" Margin="640,170,960,850"></TextBlock>
+        <TextBlock Text="Current Selection:" FontSize="40px" Margin="500,170,1100,850"></TextBlock>
 
-        <TextBlock Name="SelectionNameView" FontSize="40px" Margin="965,170,10,850"></TextBlock>
+        <TextBlock Name="SelectionNameView" FontSize="40px" Margin="820,170,400,850"></TextBlock>
 
-        <TextBlock Text="Score:" FontSize="40px" Margin="640,235,960,785"/>
+        <TextBlock Text="Score:" FontSize="40px" Margin="500,235,1100,785"/>
 
-        <TextBlock Name="SelectionScoreView" FontSize="40px" Margin="965,235,10,785"/>
+        <TextBlock Name="SelectionScoreView" FontSize="40px" Margin="825,235,400,785"/>
 
         <TextBlock Text="ส่งชุด:" FontSize="30px" Margin="640,300,960,735"/>
 
@@ -155,5 +155,66 @@
         <Viewbox Margin="1070,450,750,585">
             <RadioButton x:Name="B_wrong" GroupName="B" Content="ผิด" IsChecked="True" PreviewMouseLeftButtonUp="B_PreviewMouseLeftButtonUp"/>
         </Viewbox>
+
+        <Button Content="บันทึกข้อมูล"
+                FontSize="25"
+                Height="80"
+                Margin="640,900,400,100">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background"
+                            Value="Azure"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="LightBlue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="Freeze"
+                FontSize="25"
+                Margin="1585,170,10,785">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background"
+                            Value="Azure"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="LightBlue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>
