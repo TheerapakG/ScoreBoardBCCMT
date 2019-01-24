@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:ScoreBoardBCCMT"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="LogoDictionary.xaml" />
     </Application.Resources>
 </Application>
