@@ -23,7 +23,7 @@ namespace ScoreBoardBCCMT
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int time = 4500; //FirstRound = 7200
+        private int time = 4500; //FirstRound = 5400 Second = 4500
         private static System.Timers.Timer aTimer = null;
         List<Entry> list = null;
         ObservableCollection<string> searched = new ObservableCollection<string>();
@@ -35,15 +35,25 @@ namespace ScoreBoardBCCMT
         int currLeft = 0;
 
         public delegate void UpdateTextCallback(string message);
+        public delegate void UpdateTextCallbackToo(string message);
 
         private void UpdateText(string message)
         {
             this.project.ShownTime.ShownTime.Content = message;
         }
 
+        private void UpdateTextToo(string message)
+        {
+            this.Time.Content = message;
+        }
+
         private void updateTimer()
         {
             TimeSpan t = TimeSpan.FromSeconds(time);
+            this.Time.Dispatcher.Invoke(
+                new UpdateTextCallbackToo(this.UpdateTextToo),
+                new object[] { t.ToString() }
+            );
             this.project.Dispatcher.Invoke(
                 new UpdateTextCallback(this.UpdateText),
                 new object[] { t.ToString() }
@@ -287,15 +297,18 @@ namespace ScoreBoardBCCMT
             }
             else
             {
-                aTimer.Stop();
-                updateFreeze(false);
-                foreach (Entry el in list)
+                if (!big)
                 {
-                    updateScore(el);
+                    aTimer.Stop();
+                    updateFreeze(false);
+                    foreach (Entry el in list)
+                    {
+                        updateScore(el);
+                    }
                 }
             }
 
-            if (this.time == 900)
+            if (this.time == 900 && !big)
             {
                 updateFreeze(true);
             }
@@ -306,7 +319,7 @@ namespace ScoreBoardBCCMT
             if (big)
             {
                 this.project.ShownTime.ShownTime.FontSize = 250;
-                this.project.ShownTime.Margin = new Thickness(0, 205, 0, 0);
+                this.project.ShownTime.Margin = new Thickness(0, 105, 0, 100);
             }
             else
             {

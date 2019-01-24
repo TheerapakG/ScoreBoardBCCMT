@@ -215,5 +215,6 @@
                 </Style>
             </Button.Style>
         </Button>
+        <Label Name="Time" FontSize="40px" Margin="500,980,761,40"/>
     </Grid>
 </Window>
